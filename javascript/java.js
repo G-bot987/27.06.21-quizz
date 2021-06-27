@@ -1,5 +1,6 @@
 var start = document.querySelector("#start");
-var test;
+var choosenQu;
+var timeLeft;
 var questionarray = [
     {
         question: "what does Defer do?",
@@ -8,7 +9,7 @@ var questionarray = [
         choice2: "initialise a function after it would otherwise be called",
         choice3: "allows you to later specify when text is displayed",
         choice4: "increase fontsize",
-        answer: "1"
+        answer: "change when an src is loaded"
         // ^string. 
     },
     {
@@ -18,7 +19,7 @@ var questionarray = [
         choice2: "TypeScript",
         choice3: "npm",
         choice4: "HTML",
-        answer: 3
+        answer: "npm",
 
 
 
@@ -27,8 +28,11 @@ var questionarray = [
     }
 
 ];
+var questionsAns = [{choosenQu}
 
-console.log(questionarray[0].answer)
+];
+
+// console.log(questionarray[0].answer)
 
 var rootEl = $('#root');
 
@@ -57,9 +61,9 @@ document.getElementById("start").onclick = StartGame;
 function StartGame() {
 
     startEl.hide()
+    
 
-
-    var timeLeft = 30;
+    timeLeft = 30;
     var timeInterval = setInterval(function () {
         timeLeft--;
         timerEl.textContent = "5u9er Aw35om3 M_egA C0d1_Ng t35_t, Y0_u ha<3 " + timeLeft + " L3f*!T";
@@ -76,82 +80,153 @@ function StartGame() {
 
 function rdmGen() {
     var randomQu = Math.floor(Math.random() * questionarray.length);
-    test = randomQu
+    choosenQu = randomQu
 }
 
 
+
+
+
 // choose random question
-// console.log(randomQu, questionarray[randomQu]);
+
 // console.log(rdmGen,)
 
 function question() {
 
     rdmGen()
-
-    var QuPrompt = $('<h1>');
-    QuPrompt.attr("id", "prompt");
-    QuPrompt.text(questionarray[test].question)
-    rootEl.append(QuPrompt)
-
-    var btn1El = $('<button>');
-    btn1El.text(questionarray[test].choice1);
-    // console.log(questionarray[test].answer)
-    // console.log(questionarray[test].choice1)
-    btn1El.attr("id", "btn1");
-    btn1El.attr("class", "btn");
-    rootEl.append(btn1El)
-
-    var btn2El = $('<button>');
-    btn2El.attr("id", "btn2");
-    btn2El.attr("class", "btn");
-    btn2El.text(questionarray[test].choice2);
-    rootEl.append(btn2El)
-
-
-    var btn3El = $('<button>');
-    btn3El.attr("id", "btn3");
-    btn3El.attr("class", "btn");
-    btn3El.text(questionarray[test].choice3);
-    console.log(questionarray[test].choice3)
-    rootEl.append(btn3El)
-
-
-
-
-    var btn4El = $('<button>');
-    btn4El.attr("id", "btn4");
-    btn4El.attr("class", "btn");
-    btn4El.text(questionarray[test].choice4);
-    console.log(questionarray[test].choice4)
-    rootEl.append(btn4El)
-
-    
-
-
-    
-    document.querySelectorAll('.btn').forEach(item => {
-        item.addEventListener('click', event => {
-            console.log("hello")
-        })
-      })
-}
-
-
-function quAns() {
-
-    console.log("hello")
-}
-
-
-
-    // btn2El.click(congrats)
-    // function showQuestion(questionarray) {
-    //     QuBox.innerText = question.question
-
-
+    // repititionPrevention()
+    // function repititionPrevention() {
+    //     if(choosenQu === questionsAns){
+    //         rdmGen()
+    //     } else {
+    //     }
     // }
 
-
-
-
-    // 
+            
+            
+            
+            console.log(choosenQu, questionarray[choosenQu]);
+            
+            console.log(questionsAns)
+            
+            var QuPrompt = $('<h1>');
+            QuPrompt.attr("id", "prompt");
+            QuPrompt.text(questionarray[choosenQu].question)
+            rootEl.append(QuPrompt)
+            
+            var btn1El = $('<button>');
+            btn1El.text(questionarray[choosenQu].choice1);
+            // console.log(questionarray[choosenQu].answer)
+            // console.log(questionarray[choosenQu].choice1)
+            btn1El.attr("id", "btn1");
+            btn1El.attr("class", "btn");
+            rootEl.append(btn1El)
+            
+            var btn2El = $('<button>');
+            btn2El.attr("id", "btn2");
+            btn2El.attr("class", "btn");
+            btn2El.text(questionarray[choosenQu].choice2);
+            rootEl.append(btn2El)
+            
+            
+            var btn3El = $('<button>');
+            btn3El.attr("id", "btn3");
+            btn3El.attr("class", "btn");
+            btn3El.text(questionarray[choosenQu].choice3);
+            console.log(questionarray[choosenQu].choice3)
+            rootEl.append(btn3El)
+            
+            
+            
+            
+            var btn4El = $('<button>');
+            btn4El.attr("id", "btn4");
+            btn4El.attr("class", "btn");
+            btn4El.text(questionarray[choosenQu].choice4);
+            console.log(questionarray[choosenQu].choice4)
+            rootEl.append(btn4El)
+            
+            
+            function clear() {
+                
+                QuPrompt.hide()
+                btn1El.hide()
+                btn2El.hide()
+                btn3El.hide()
+                btn4El.hide()
+            }
+            // console.log(questionarray[choosenQu].answer)
+            
+            document.getElementById("btn1").onclick = log
+            
+            function log() {
+                console.log(questionarray[choosenQu].choice1)
+                if (questionarray[choosenQu].choice1 === questionarray[choosenQu].answer) {
+                    
+                    window.alert("correct")
+                    timeLeft = timeLeft +5; 
+                    clear()
+                    
+                    
+                }
+                else {
+                    window.alert("incorrect")
+                    timeLeft = timeLeft -5; 
+                    clear()
+                    
+                }
+            }
+            
+            document.getElementById("btn2").onclick = log2
+            
+            function log2() {
+                console.log(questionarray[choosenQu].choice2)
+                if (questionarray[choosenQu].choice2 === questionarray[choosenQu].answer) {
+                    window.alert("correct")
+                    clear()
+                    
+                    timeLeft = timeLeft +5; 
+                } else{ 
+                    window.alert("incorrect")
+                    clear()
+                    
+                    timeLeft = timeLeft -5; 
+                }
+            }
+            
+            document.getElementById("btn3").onclick = log3
+            
+            function log3() {
+                console.log(questionarray[choosenQu].choice3)
+                if (questionarray[choosenQu].choice3 === questionarray[choosenQu].answer) {
+                    window.alert("correct")
+                    clear()
+                    
+                    timeLeft = timeLeft +5;
+                    
+                } else {
+                    window.alert("incorrect")
+                    timeLeft = timeLeft -5; 
+                    
+                    question()
+                }
+            }
+            
+            document.getElementById("btn4").onclick = log4
+            
+            function log4() {
+                console.log(questionarray[choosenQu].choice4)
+                if (questionarray[choosenQu].choice4 === questionarray[choosenQu].answer) {
+                    window.alert("correct")
+                    clear()
+                
+      
+            timeLeft = timeLeft +5;
+        } else {
+        window.alert("incorrect")
+        clear()
+       
+        timeLeft = timeLeft -5; 
+    }
+    }
+}
