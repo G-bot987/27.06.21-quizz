@@ -28,7 +28,7 @@ var questionarray = [
     }
 
 ];
-var questionsAns = [{ choosenQu }
+var questionsAns = [
 
 ];
 
@@ -96,9 +96,11 @@ function question() {
     
     rdmGen()
     
+   while(questionsAns.includes(choosenQu) && questionarray.length > questionsAns.length){
+       rdmGen()
+   } 
     
-    
-    
+    questionsAns.push(choosenQu)
     
     console.log(choosenQu, questionarray[choosenQu]);
     
@@ -143,12 +145,11 @@ function question() {
     
     
     function clear() {
-        
-        QuPrompt.hide()
-        btn1El.hide()
-        btn2El.hide()
-        btn3El.hide()
-        btn4El.hide()
+        QuPrompt.remove()    
+        btn1El.remove()
+        btn2El.remove()
+        btn3El.remove()
+        btn4El.remove()
     }
     // console.log(questionarray[choosenQu].answer)
     
@@ -161,7 +162,7 @@ function question() {
             window.alert("correct")
             timeLeft = timeLeft + 5;
             clear()
-            secondQu()
+            question()
             
             
         }
@@ -169,7 +170,7 @@ function question() {
             window.alert("incorrect")
             timeLeft = timeLeft - 5;
             clear()
-            secondQu()
+            question()
             
         }
     }
@@ -182,13 +183,13 @@ function question() {
             window.alert("correct")
             timeLeft = timeLeft + 5;
             clear()
-            secondQu()
+            question()
             
         } else {
             window.alert("incorrect")
             timeLeft = timeLeft - 5;
             clear()
-            secondQu()
+            question()
             
         }
     }
@@ -201,14 +202,14 @@ function question() {
             window.alert("correct")
             timeLeft = timeLeft + 5;
             clear()
-            secondQu()
+            question()
             
             
         } else {
             window.alert("incorrect")
             timeLeft = timeLeft - 5;
             clear()
-            secondQu()
+            question()
         }
     }
     
@@ -220,14 +221,14 @@ function question() {
             window.alert("correct")
             timeLeft = timeLeft + 5;
             clear()
-            secondQu()
+            question()
             
             
         } else {
             window.alert("incorrect")
             timeLeft = timeLeft - 5;
             clear()
-            secondQu()
+            question()
             
         }
     }
@@ -235,24 +236,25 @@ function question() {
 
 
 
-function chooseAnother(questionarray) {
-    questionarray.slice(questionsAns)
+// function chooseAnother(questionarray) {
+//     questionarray.slice(questionsAns)
+//     var test = questionarray.slice(questionsAns)
     
-}
+// }
 
-function secondQu() {
-    function repititionPrevention() {
-        if (choosenQu === questionsAns) {
+// function secondQu() {
+    
+// }
+// function repititionPrevention() {
+//     if (questionsAns.includes(choosenQu)) {
 
-            chooseAnother()
-            question()
+//         rdmGen
+//         question()
 
-            
-        } else {
-            question()
-            
-        }
-    }
-    repititionPrevention()
-
-}
+        
+//     } else {
+//         question()
+        
+//     }
+// }
+// repititionPrevention()
