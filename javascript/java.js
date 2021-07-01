@@ -56,6 +56,11 @@ var timerEl = document.getElementById('countdown');
 // start game and timer reveals 1st qu
 
 document.getElementById("start").onclick = StartGame;
+var QuPrompt = $('<h1>');
+var btn1El = $('<button>');
+   var btn2El = $('<button>');
+   var btn3El = $('<button>');
+   var btn4El = $('<button>');
 
 
 function StartGame() {
@@ -83,6 +88,15 @@ function rdmGen() {
     choosenQu = randomQu
 }
 
+function clear() {
+    console.log("steven")
+    QuPrompt.remove()    
+    btn1El.remove()
+    btn2El.remove()
+    btn3El.remove()
+    btn4El.remove()
+}
+
 
 
 
@@ -99,19 +113,29 @@ function question() {
    while(questionsAns.includes(choosenQu) && questionarray.length > questionsAns.length){
        rdmGen()
    } 
-    
-    questionsAns.push(choosenQu)
-    
-    console.log(choosenQu, questionarray[choosenQu]);
-    
-    console.log(questionsAns)
-    
-    var QuPrompt = $('<h1>');
+   if (questionarray.length == questionsAns.length ){
+       console.log("yabadabado") 
+       clear()
+    var endof = $('<h1>');
+    endof.attr("id", "final");
+    endof.text("End of Quizz! your score was")
+    rootEl.append(endof)
+    return
+   }
+   
+   
+   questionsAns.push(choosenQu)
+   
+   console.log(choosenQu, questionarray[choosenQu]);
+   
+   console.log(questionsAns)
+   
+   
+   
     QuPrompt.attr("id", "prompt");
     QuPrompt.text(questionarray[choosenQu].question)
     rootEl.append(QuPrompt)
     
-    var btn1El = $('<button>');
     btn1El.text(questionarray[choosenQu].choice1);
     // console.log(questionarray[choosenQu].answer)
     // console.log(questionarray[choosenQu].choice1)
@@ -119,14 +143,12 @@ function question() {
     btn1El.attr("class", "btn");
     rootEl.append(btn1El)
     
-    var btn2El = $('<button>');
     btn2El.attr("id", "btn2");
     btn2El.attr("class", "btn");
     btn2El.text(questionarray[choosenQu].choice2);
     rootEl.append(btn2El)
     
     
-    var btn3El = $('<button>');
     btn3El.attr("id", "btn3");
     btn3El.attr("class", "btn");
     btn3El.text(questionarray[choosenQu].choice3);
@@ -136,7 +158,6 @@ function question() {
     
     
     
-    var btn4El = $('<button>');
     btn4El.attr("id", "btn4");
     btn4El.attr("class", "btn");
     btn4El.text(questionarray[choosenQu].choice4);
@@ -144,13 +165,7 @@ function question() {
     rootEl.append(btn4El)
     
     
-    function clear() {
-        QuPrompt.remove()    
-        btn1El.remove()
-        btn2El.remove()
-        btn3El.remove()
-        btn4El.remove()
-    }
+
     // console.log(questionarray[choosenQu].answer)
     
     document.getElementById("btn1").onclick = log
