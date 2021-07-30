@@ -1,6 +1,8 @@
+var HighScores = JSON.parse(localStorage.getItem("HighScores")) || [];
 var start = document.querySelector("#start");
 var choosenQu;
 var timeLeft;
+var scoreText = document.getElementById("Score");
 var questionarray = [
     {
         question: "what does Defer do?",
@@ -66,6 +68,11 @@ var btn1El = $('<button>');
 function StartGame() {
 
     startEl.hide()
+    var Score = $('<h2>');
+    Score.attr("id", "Score");
+    Score.text("your score is");
+    console.log(Score.text)
+    rootEl.append(Score)
 
 
     timeLeft = 30;
@@ -97,9 +104,27 @@ function clear() {
     btn4El.remove()
 }
 
+// document.getElementById("yesBtn").onclick = yes
+// function yes() {
+//     preventDefault();
+    
+// }
+        
+   
+// document.getElementById("noBtn").onclick = no 
 
+// function no() {
+    
+        
+        
+// }
 
+incrementScore = num => {
+    Score +=num;
+    scoreText.innerText = Score;
+}
 
+// function that takes index of Qu, and answer provided. e.g choice. then increment and +/- from score. 
 
 
 // choose random question
@@ -116,12 +141,29 @@ function question() {
    if (questionarray.length == questionsAns.length ){
        console.log("yabadabado") 
        clear()
+       timerEl.remove()
+    
     var endof = $('<h1>');
     endof.attr("id", "final");
     endof.text("End of Quizz! your score was")
     rootEl.append(endof)
+    var saveScore = $('<h2>');
+    saveScore.attr("id", "scoreCard");
+    saveScore.text("Do you want to save your score")
+    rootEl.append(saveScore)
+    var saveYes = $('<button>');
+   var saveNo = $('<button>');
+   saveYes.attr("id", "yesBtn");
+    saveYes.text("Yes")
+    rootEl.append(saveYes)
+    saveNo.attr("id", "noBtn");
+    saveNo.text("No")
+    rootEl.append(saveNo)
     return
-   }
+    yes()
+    no()
+
+   } 
    
    
    questionsAns.push(choosenQu)
@@ -173,11 +215,18 @@ function question() {
     function log() {
         console.log(questionarray[choosenQu].choice1)
         if (questionarray[choosenQu].choice1 === questionarray[choosenQu].answer) {
-            
+         
+incrementScore = num => {
+    Score +=num;
+    // scoreText.innerText = Score;
+}
+
             window.alert("correct")
             timeLeft = timeLeft + 5;
-            clear()
+            // incrementScore(1);
+            clear();
             question()
+            
             
             
         }
