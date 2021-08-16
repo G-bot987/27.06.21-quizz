@@ -1,6 +1,7 @@
 # 27.06.21-quizz
 
 deployed at  https://g-bot987.github.io/27.06.21-quizz/
+![](./img/quizz.PNG)
 
 GIVEN I am taking a code quiz
 WHEN I click the start button
